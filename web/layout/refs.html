@@ -1,0 +1,73 @@
+<!-- Tags + Branches -->
+
+<div class="text-slate-900 rounded divide-y border">
+	<div class="flex justify-between items-center py-1.5 px-4 font-semibold">
+		<div class="flex items-center w-1/2">
+			<div class="px-4">Branch</div>
+		</div>
+		<div class="flex items-center space-x-4">
+			<div class="text-center w-20">Author</div>
+			<div class="text-center w-32">Last update</div>
+			<div class="flex justify-center">
+				<div class="text-center hover:underline w-24">Views</div>
+			</div>
+		</div>
+	</div>
+	{{ range $index, $bra_name := .Repo.SortBras }}
+    {{ with index $.Repo.Refs $bra_name }}
+	<div class="flex justify-between items-center py-1.5 px-4 hover:bg-slate-50">
+		<div class="flex items-center w-1/2">
+			<!-- <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+				<path
+					d="M287.77-289.385h256.537v-45.384H287.77v45.384Zm0-167.923h384.46v-45.384H287.77v45.384Zm0-167.923h384.46v-45.384H287.77v45.384Zm-90.076 485.23q-23.529 0-40.611-17.082-17.082-17.082-17.082-40.611v-564.612q0-23.529 17.082-40.611 17.082-17.082 40.611-17.082h564.612q23.529 0 40.611 17.082 17.082 17.082 17.082 40.611v564.612q0 23.529-17.082 40.611-17.082 17.082-40.611 17.082H197.694Zm0-45.384h564.612q4.616 0 8.463-3.846 3.846-3.847 3.846-8.463v-564.612q0-4.616-3.846-8.463-3.847-3.846-8.463-3.846H197.694q-4.616 0-8.463 3.846-3.846 3.847-3.846 8.463v564.612q0 4.616 3.846 8.463 3.847 3.846 8.463 3.846Zm-12.309-589.23V-185.385-774.615Z" />
+			</svg> -->
+			<div class="px-1.5 ">{{ .Name }}</div>
+		</div>
+		<div class="flex space-x-4 items-center ">
+			<div class="text-center w-20">{{ .Commit.Author.Name }}</div>
+			<div class="text-center w-32">{{ .When }}</div>
+			<div class="flex w-24 justify-end">
+				<div class="hover:underline"><a href="/tree/main">tree</a></div>
+				<div class="px-2 hover:underline">log</div>
+			</div>
+		</div>
+	</div>
+    {{ end }}
+	{{ end }}
+</div>
+
+<div class="text-slate-900 rounded divide-y border">
+	<div class="flex justify-between items-center py-1.5 px-4 font-semibold">
+		<div class="flex items-center w-1/2">
+			<div class="px-4">Tag</div>
+		</div>
+		<div class="flex items-center space-x-4">
+			<div class="text-center w-20">Hash</div>
+			<div class="text-center w-32">Last update</div>
+			<div class="flex justify-center">
+				<div class="text-center hover:underline w-24">Views</div>
+			</div>
+		</div>
+	</div>
+	{{ range $index, $tag_name := .Repo.SortTags }}
+    {{ with index $.Repo.Refs $tag_name }}
+	<div class="flex justify-between items-center py-1.5 px-4 hover:bg-slate-50">
+		<div class="flex items-center w-1/2">
+			<!-- <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+				<path
+					d="M287.77-289.385h256.537v-45.384H287.77v45.384Zm0-167.923h384.46v-45.384H287.77v45.384Zm0-167.923h384.46v-45.384H287.77v45.384Zm-90.076 485.23q-23.529 0-40.611-17.082-17.082-17.082-17.082-40.611v-564.612q0-23.529 17.082-40.611 17.082-17.082 40.611-17.082h564.612q23.529 0 40.611 17.082 17.082 17.082 17.082 40.611v564.612q0 23.529-17.082 40.611-17.082 17.082-40.611 17.082H197.694Zm0-45.384h564.612q4.616 0 8.463-3.846 3.846-3.847 3.846-8.463v-564.612q0-4.616-3.846-8.463-3.847-3.846-8.463-3.846H197.694q-4.616 0-8.463 3.846-3.846 3.847-3.846 8.463v564.612q0 4.616 3.846 8.463 3.847 3.846 8.463 3.846Zm-12.309-589.23V-185.385-774.615Z" />
+			</svg> -->
+			<div class="px-1.5 ">{{ .Name }}</div>
+		</div>
+		<div class="flex space-x-4 items-center ">
+			<div class="text-center w-20">{{ .Commit.Hash | printf "%.8s" }}</div>
+			<div class="text-center w-32">{{ .When }}</div>
+			<div class="flex w-24 justify-end">
+				<div class="hover:underline">zip</div>
+				<div class="px-2 hover:underline">tar.gz</div>
+			</div>
+		</div>
+	</div>
+    {{ end }}
+	{{ end }}
+</div>

@@ -1,0 +1,100 @@
+<!-- Log + Nav + Tree -->
+
+<div class="flex justify-between items-center mt-6 py-3 px-4 text-slate-900 border rounded">
+	<div class="flex items-center w-1/2">
+		<div class="px-2">{{ .Commit.Message }}</div>
+	</div>
+	<div class="flex items-center space-x-4">
+		<div class="text-center w-20">{{ .Commit.Author.Name }}</div>
+		<div class="text-center w-32">{{ .Commit.Committer.When | printf "%.10s" }}</div>
+		<div class="flex justify-end">
+			<div class="text-center hover:underline w-24">{{ .Commit.Hash | printf "%.8s" }}</div>
+		</div>
+	</div>
+</div>
+<div class="flex justify-between items-center mt-4 mb-3 px-4 text-slate-900">
+	<nav class="">
+		<ol class="flex">
+			<li>
+				<a href="#" class="transition duration-150">src</a>
+			</li>
+			<li>
+				<span class="mx-2 font-bold text-neutral-500 dark:text-neutral-400">/</span>
+			</li>
+			<li>
+				<a href="#" class="transition duration-150">lib</a>
+			</li>
+			<li>
+				<span class="mx-2 font-bold text-neutral-500 dark:text-neutral-400">/</span>
+			</li>
+			<li class="text-neutral-500 dark:text-neutral-400">main.rs</li>
+		</ol>
+	</nav>
+	<div class="flex items-center space-x-2 bg-slate-100">
+		<div class="px-2 py-1 rounded">blame</div>
+		<div class="px-2 py-1 rounded">raw</div>
+		<div class="px-2 py-1 rounded">permalink</div>
+		<div class="px-2 py-1 rounded">log</div>
+	</div>
+</div>
+<div class="text-slate-900 rounded divide-y border">
+	<div class="flex justify-between items-center py-1.5 px-4 font-semibold">
+		<div class="flex items-center w-1/2">
+			<div class="px-4">Name</div>
+		</div>
+		<div class="flex items-center space-x-4">
+			<div class="text-center w-20">Size</div>
+			<div class="text-center w-32">Last update</div>
+			<div class="flex justify-center">
+				<div class="text-center hover:underline w-24">Views</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="flex justify-between items-center py-1.5 px-4 hover:bg-slate-50">
+		<div class="flex items-center w-1/2">
+			<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+				<path
+					d="M157.694-180.001q-23.529 0-40.611-17.347-17.082-17.346-17.082-40.346v-484.612q0-23 17.082-40.346 17.082-17.347 40.611-17.347h249.459l65.385 65.385h329.768q23 0 40.346 17.347 17.347 17.346 17.347 40.346v419.227q0 23-17.347 40.346-17.346 17.347-40.346 17.347H157.694Zm0-45.384h644.612q5.385 0 8.847-3.462 3.462-3.462 3.462-8.847v-419.227q0-5.385-3.462-8.847-3.462-3.462-8.847-3.462H454.077l-65.385-65.385H157.694q-5.385 0-8.847 3.462-3.462 3.462-3.462 8.847v484.612q0 5.385 3.462 8.847 3.462 3.462 8.847 3.462Zm-12.309 0v-509.23V-225.385Z" />
+			</svg>
+			<div class="px-3">..</div>
+		</div>
+	</div>
+	{{ range .Tree.Dirs }}
+	<div class="flex justify-between items-center py-1.5 px-4 hover:bg-slate-50">
+		<div class="flex items-center w-1/2">
+			<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+				<path
+					d="M157.694-180.001q-23.529 0-40.611-17.347-17.082-17.346-17.082-40.346v-484.612q0-23 17.082-40.346 17.082-17.347 40.611-17.347h249.459l65.385 65.385h329.768q23 0 40.346 17.347 17.347 17.346 17.347 40.346v419.227q0 23-17.347 40.346-17.346 17.347-40.346 17.347H157.694Zm0-45.384h644.612q5.385 0 8.847-3.462 3.462-3.462 3.462-8.847v-419.227q0-5.385-3.462-8.847-3.462-3.462-8.847-3.462H454.077l-65.385-65.385H157.694q-5.385 0-8.847 3.462-3.462 3.462-3.462 8.847v484.612q0 5.385 3.462 8.847 3.462 3.462 8.847 3.462Zm-12.309 0v-509.23V-225.385Z" />
+			</svg>
+			<div class="px-1.5">{{ .Name }}</div>
+		</div>
+		<div class="flex space-x-4 items-center">
+			<div class="px-2"></div>
+			<div class="text-center w-32">2021-10-10</div>
+			<div class="flex w-24 justify-end">
+				<div class="px-2 hover:underline">log</div>
+			</div>
+		</div>
+	</div>
+	{{ end }}
+	{{ range .Tree.Files }}
+	<div class="flex justify-between items-center py-1.5 px-4 hover:bg-slate-50">
+		<div class="flex items-center w-1/2">
+			<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+				<path
+					d="M287.77-289.385h256.537v-45.384H287.77v45.384Zm0-167.923h384.46v-45.384H287.77v45.384Zm0-167.923h384.46v-45.384H287.77v45.384Zm-90.076 485.23q-23.529 0-40.611-17.082-17.082-17.082-17.082-40.611v-564.612q0-23.529 17.082-40.611 17.082-17.082 40.611-17.082h564.612q23.529 0 40.611 17.082 17.082 17.082 17.082 40.611v564.612q0 23.529-17.082 40.611-17.082 17.082-40.611 17.082H197.694Zm0-45.384h564.612q4.616 0 8.463-3.846 3.846-3.847 3.846-8.463v-564.612q0-4.616-3.846-8.463-3.847-3.846-8.463-3.846H197.694q-4.616 0-8.463 3.846-3.846 3.847-3.846 8.463v564.612q0 4.616 3.846 8.463 3.847 3.846 8.463 3.846Zm-12.309-589.23V-185.385-774.615Z" />
+			</svg>
+			<div class="px-1.5 ">{{ .Name }}</div>
+		</div>
+		<div class="flex space-x-4 items-center ">
+			<div class="text-center w-20">10KB</div>
+			<div class="text-center w-32">2021-10-10</div>
+			<div class="flex w-24 justify-end">
+				<div class=" hover:underline">raw</div>
+				<div class="px-2 hover:underline">log</div>
+			</div>
+		</div>
+	</div>
+	{{ end }}
+</div>
